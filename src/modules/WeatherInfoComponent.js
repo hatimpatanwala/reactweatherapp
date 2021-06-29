@@ -86,7 +86,6 @@ const WeatherInfoComponent = (props) => {
 };
 const WeatherComponent = (props) => {
     const {weather} = props;
-    const isDay = weather.weather[0].icon.includes('d')
     const getTime = (timeStamp) => {
         return `${new Date(timeStamp * 1000).getHours()} : ${new Date(timeStamp * 1000).getMinutes()}`
     }
@@ -104,8 +103,8 @@ const WeatherComponent = (props) => {
 
             <WeatherInfoLabel>Weather Info</WeatherInfoLabel>
             <WeatherInfoContainer>
-                <WeatherInfoComponent name={isDay ? "sunset" : "sunrise"}
-                                      value={`${getTime(weather.sys[isDay ? "sunset" : "sunrise"])}`}/>
+                <WeatherInfoComponent name={"sunrise"} value={`${getTime(weather.sys.sunrise)}`} />
+                <WeatherInfoComponent name={"sunset"} value={`${getTime(weather.sys.sunset)}`} />
                 <WeatherInfoComponent name={"humidity"} value={weather.main.humidity}/>
                 <WeatherInfoComponent name={"wind"} value={weather.wind.speed}/>
                 <WeatherInfoComponent name={"pressure"} value={weather.main.pressure}/>
